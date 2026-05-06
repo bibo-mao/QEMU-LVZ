@@ -2,12 +2,28 @@
 
 本项目主要为LoongArch64架构的QEMU TCG虚拟机提供虚拟化扩展（LVZ）支持。目前已基本实现所有指令、CSR及架构支持，处于bug修复阶段。
 
-## 编译
+## 编译测试
+
+### 编译
 
 在项目根目录依次执行：
 
-- ./configure --target-list=loongarch64-softmmu --disable-doc
+- ./configure --target-list=loongarch64-softmmu --disable-docs
 - make -j
+
+### 测试
+
+获取测试镜像包，解压并执行外侧tcg虚拟机：
+
+- mkdir lvz
+- cd lvz
+- wget https://krgm.moe/static/lvztest.tar.gz
+- tar xf lvztest.tar.gz
+- ./qemu.sh
+
+等待一段时间后，出现登录界面，输入用户名root，密码为空，进入shell。
+
+再次执行./qemu.sh进入内侧kvm虚拟机，等待系统启动（默认启动过程没有串口显示）。
 
 ## 设计
 
