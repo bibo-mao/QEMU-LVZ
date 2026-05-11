@@ -24,21 +24,8 @@ $ make -j
 ```
 
 ### 测试
-这里我们提供了测试用的镜像与固件，下载链接： https://krgm.moe/static/lvztest.tar.gz
 
-将系统镜像与固件下载到项目根目录后，可以执行以下命令启动外侧tcg虚拟机：
-```bash
-$ ./build/qemu-system-loongarch64 \
-$ 	-hda lvztest.img \
-$ 	-bios edk2-loongarch64-code.fd \
-$ 	-smp 8 \
-$ 	-m 8G \
-$ 	-nographic
-```
-
-启动后等待一段时间进入登录界面，输入用户名 root，密码为空（直接回车），进入shell。
-
-在虚拟机中再次执行 ./qemu.sh 进入内侧 KVM 虚拟机，等待系统启动（默认启动过程没有串口显示）。
+这里我们提供了测试用的镜像与固件，下载链接[在这里]( https://krgm.moe/static/lvztest.tar.gz)。将系统镜像与固件下载到项目根目录后，执行./qemu.sh启动外侧tcg虚拟机。启动后等待一段时间进入登录界面，输入用户名 root，密码为空（直接回车），进入shell。在虚拟机中再次执行 ./qemu.sh 进入内侧 KVM 虚拟机，等待系统启动。内侧alpine启动过程中没有串口显示。
 
 ### 💡 MacOS 环境构建提示
 如果 Mac 中构建 QEMU 时发生编译链接错误 archive member '/' not a mach-o file ，则需在编译前，将 binutils 从环境变量中临时剔除，或者直接重置为默认（这是 MacOS 上编译 C/C++ 项目常见的一个问题，非本项目Bug），可以通过下面的命令：
